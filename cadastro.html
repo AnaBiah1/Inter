@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Interclasses: SENAI Gamer 2025</title>
+  <link rel="stylesheet" href="cadastro.css">
+</head>
+<body>
+  <div class="form-container">
+    <div class="form-header">
+      <h1>Inscreva-se</h1>
+    </div>
+
+    <form id="form-inscricao">
+      <div class="form-group required">
+        <label for="nome">Nome Completo: <span>*</span></label>
+        <input type="text" id="nome" name="nome" required>
+      </div>
+
+      <div class="form-group required">
+        <label for="email">E-mail Pessoal: <span>*</span></label>
+        <input type="email" id="email" name="email" required>
+      </div>
+
+      <div class="form-group required">
+        <label for="curso">Curso: <span>*</span></label>
+        <select id="curso" name="curso" required>
+          <option value="">Escolher</option>
+          <option value="desenvolvimento">Desenvolvimento de Sistemas</option>
+          <option value="mecatronica">Mecatrônica</option>
+          <option value="eletrica">Elétrica</option>
+        </select>
+      </div>
+
+      <div class="form-group required">
+        <label for="modalidade">Modalidade: <span>*</span></label>
+        <select id="modalidade" name="modalidade" required>
+          <option value="">Escolher</option>
+          <option value="volei">Vôlei</option>
+          <option value="tenis-mesa">Tênis de Mesa</option>
+          <option value="futsal">Futsal</option>
+          <option value="futsal">Basquete</option>
+        </select>
+      </div>
+
+      <div class="form-group required">
+        <label for="turma">Turma: <span>*</span></label>
+        <select id="turma" name="turma" required>
+          <option value="">Escolher</option>
+          <option value="1a">1ª Série</option>
+          <option value="2a">2ª Série</option>
+        </select>
+      </div>
+
+      <!-- Campo de foto -->
+      <div class="form-group required">
+        <label for="foto">Colocar Foto: <span>*</span></label>
+        <input type="file" id="foto" name="foto" accept="image/*" required>
+        <br>
+        <img id="preview" style="max-width:150px; margin-top:10px; display:none;">
+      </div>
+
+       <a href="confirmação.html" class="botao">Enviar</a>
+    </form>
+
+    <!-- Onde vou mostrar os dados preenchidos -->
+    <div id="bloco-notas" style="margin-top:20px; border:1px solid #aeafb1; padding:10px; display:none;">
+      <h3>Dados preenchidos:</h3>
+      <p id="out-nome"></p>
+      <p id="out-email"></p>
+      <p id="out-curso"></p>
+      <p id="out-turma"></p>
+      <img id="out-foto" style="max-width:150px; display:none;">
+    </div>
+  </div>
+
+  <script>
+    // Preview imediato da foto
+    document.getElementById("foto").addEventListener("change", function(event) {
+      const file = event.target.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          const img = document.getElementById("preview");
+          img.src = e.target.result;
+          img.style.display = "block";
+        };
+        reader.readAsDataURL(file);
+      }
+    });
+
+    // Mostrar os dados no "bloco de notas"
+    document.getElementById("form-inscricao").addEventListener("submit", function(e) {
+      e.preventDefault();
+
+      // Pega os valores do form
+      const nome  = document.getElementById("nome").value;
+      const email = document.getElementById("email").value;
+      const curso = document.getElementById("curso").value;
+      const turma = document.getElementById("turma").value;
+      const file  = document.getElementById("foto").files[0];
+
+      // Mostra os textos
+      document.getElementById("out-nome").textContent  = "Nome: " + nome;
+      document.getElementById("out-email").textContent = "Email: " + email;
+      document.getElementById("out-curso").textContent = "Curso: " + curso;
+      document.getElementById("out-turma").textContent = "Turma: " + turma;
+
+      // Mostra a foto escolhida
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          const img = document.getElementById("out-foto");
+          img.src = e.target.result;
+          img.style.display = "block";
+        };
+        reader.readAsDataURL(file);
+      }
+
+      
+    });
+  </script>
+</body>
+</html>

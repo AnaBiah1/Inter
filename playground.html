@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Playground de Flexbox - Senai</title>
+<style>
+  :root{
+    --bg:#0b1020;
+    --card:#111831;
+    --muted:#93a4c1;
+    --text:#e8eefc;
+    --accent:#7aa2ff;
+    --border:#1e2a4a;
+    --chip:#1b2442;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0; font:16px/1.4 system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+    background: radial-gradient(1200px 800px at 10% -10%, #12214a, transparent),
+                radial-gradient(1000px 700px at 110% 10%, #0c1736, transparent),
+                var(--bg);
+    color:var(--text);
+  }
+  .wrap{max-width:1200px; margin:0 auto; padding:24px}
+  h1{margin:0 0 6px; font-size:28px}
+  p.lead{margin:0 0 16px; color:var(--muted)}
+  .grid{display:grid; gap:16px}
+  @media(min-width:1000px){ .grid{grid-template-columns: 340px 1fr;} }
+
+  .card{background:var(--card); border:1px solid var(--border); border-radius:16px; padding:16px; box-shadow: 0 10px 30px rgba(0,0,0,.25)}
+  .section-title{font-size:14px; color:var(--muted); margin:0 0 8px}
+  .row{display:flex; gap:8px; align-items:center; margin:8px 0}
+  label{font-size:13px; color:var(--muted)}
+  select,input[type="text"],input[type="number"],input[type="range"]{
+    width:100%; padding:8px 10px; background:#0c142b; color:var(--text); border:1px solid var(--border); border-radius:10px;
+  }
+  input[type="range"]{accent-color:var(--accent)}
+  .chips{display:flex; flex-wrap:wrap; gap:8px; margin-top:8px}
+  .chip{padding:6px 10px; border-radius:999px; background:var(--chip); border:1px solid var(--border); font-size:12px; cursor:pointer}
+  .chip:hover{outline:1px solid #2b3d72}
+  .btn{padding:8px 12px; border-radius:10px; border:1px solid var(--border); background:#0c142b; color:var(--text); cursor:pointer}
+  .btn:hover{outline:1px solid #2b3d72}
+  .btn-danger{background:#3a1631}
+  pre{margin:0; padding:12px; background:#0a1124; color:#cde1ff; border:1px solid var(--border); border-radius:12px; overflow:auto}
+
+  /* Área de visualização */
+  .viewer{min-height:280px; background:linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,.00)); border:1px dashed #2a3866; border-radius:16px; padding:12px}
+  .container{display:flex; min-height:220px; border-radius:12px; padding:12px; gap:12px;
+             background:linear-gradient(180deg, rgba(122,162,255,.08), rgba(122,162,255,.04)); border:1px solid #203059}
+  .item{user-select:none; background:rgba(122,162,255,.14); color:#dbe6ff; border:1px solid #304a88;
+        padding:8px 12px; border-radius:12px; font-weight:600; box-shadow:0 3px 8px rgba(0,0,0,.25)}
+  .items-grid{display:grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap:12px}
+  @media(min-width:900px){ .items-grid{grid-template-columns: repeat(3, minmax(0,1fr));} }
+  .muted{color:var(--muted); font-size:12px}
+  .note{font-size:12px; color:#b9c7e6}
+  .hr{height:1px; background:var(--border); margin:12px 0}
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>Playground de Flexbox (Senai Mangal)</h1>
+    <p class="lead">Mude as propriedades no painel e veja o layout responder. Perfeito para aula sem bibliotecas.</p>
+
+    <div class="grid">
+      <!-- Painel de controles -->
+      <section class="card">
+        <h2 class="section-title">Contêiner (display: flex)</h2>
+
+        <div class="row">
+          <label style="min-width:130px">flex-direction</label>
+          <select id="direction">
+            <option>row</option>
+            <option>row-reverse</option>
+            <option>column</option>
+            <option>column-reverse</option>
+          </select>
+        </div>
+
+        <div class="row">
+          <label style="min-width:130px">justify-content</label>
+          <select id="justify">
+            <option>flex-start</option>
+            <option>center</option>
+            <option>flex-end</option>
+            <option>space-between</option>
+            <option>space-around</option>
+            <option>space-evenly</option>
+          </select>
+        </div>
+
+        <div class="row">
+          <label style="min-width:130px">align-items</label>
+          <select id="align">
+            <option>stretch</option>
+            <option selected>center</option>
+            <option>flex-start</option>
+            <option>flex-end</option>
+            <option>baseline</option>
+          </select>
+        </div>
+
+        <div class="row">
+          <label style="min-width:130px">flex-wrap</label>
+          <select id="wrap">
+            <option>nowrap</option>
+            <option>wrap</option>
+            <option>wrap-reverse</option>
+          </select>
+        </div>
+
+        <div class="row">
+          <label style="min-width:130px">align-content</label>
+          <select id="alignContent">
+            <option>stretch</option>
+            <option>flex-start</option>
+            <option>center</option>
+            <option>flex-end</option>
+            <option>space-between</option>
+            <option>space-around</option>
+          </select>
+        </div>
+
+        <div class="row" style="gap:12px">
+          <label style="min-width:130px">gap</label>
+          <input id="gap" type="range" min="0" max="48" step="1" value="12" />
+          <span class="muted" id="gapVal">12px</span>
+        </div>
+
+        <div class="chips" id="presets"></div>
+
+        <div class="hr"></div>
+
+        <h2 class="section-title">CSS gerado</h2>
+        <pre id="cssOut"></pre>
+
+        <p class="note">Dica: copie o CSS acima para seu projeto para replicar o layout.</p>
+      </section>
+
+      <!-- Visualização + itens -->
+      <section class="card">
+        <h2 class="section-title">Visualização</h2>
+        <div class="viewer">
+          <div id="container" class="container"></div>
+        </div>
+
+        <div class="hr"></div>
+
+        <div class="row" style="justify-content:space-between">
+          <div class="row" style="gap:6px">
+            <button class="btn" id="addItem">adicionar item</button>
+            <button class="btn" id="resetItems">resetar itens</button>
+          </div>
+          <span class="muted" id="itemsCount"></span>
+        </div>
+
+        <div class="items-grid" id="itemsPanel"></div>
+      </section>
+    </div>
+  </div>
+
+<script>
+  // Estado inicial
+  const state = {
+    direction: "row",
+    justify: "center",
+    align: "center",
+    wrap: "nowrap",
+    alignContent: "stretch",
+    gap: 12
+  };
+
+  let items = Array.from({length:5}, (_,i)=> ({
+    id: i+1,
+    label: "Item " + (i+1),
+    order: 0,
+    grow: 0,
+    shrink: 1,
+    basis: "auto",
+    alignSelf: "auto"
+  }));
+
+  // Elementos
+  const el = {
+    container: document.getElementById("container"),
+    cssOut: document.getElementById("cssOut"),
+    gap: document.getElementById("gap"),
+    gapVal: document.getElementById("gapVal"),
+    presets: document.getElementById("presets"),
+    itemsPanel: document.getElementById("itemsPanel"),
+    itemsCount: document.getElementById("itemsCount"),
+    controls: {
+      direction: document.getElementById("direction"),
+      justify: document.getElementById("justify"),
+      align: document.getElementById("align"),
+      wrap: document.getElementById("wrap"),
+      alignContent: document.getElementById("alignContent"),
+    },
+    buttons: {
+      addItem: document.getElementById("addItem"),
+      resetItems: document.getElementById("resetItems"),
+    }
+  };
+
+  // Presets
+  const PRESETS = [
+    { name: "Centro (row)",
+      values: {direction: "row", justify:"center", align:"center", wrap:"nowrap", alignContent:"stretch", gap:12}},
+    { name: "Espaçado (row)",
+      values: {direction: "row", justify:"space-between", align:"center", wrap:"nowrap", alignContent:"stretch", gap:12}},
+    { name: "Coluna centralizada",
+      values: {direction: "column", justify:"center", align:"center", wrap:"nowrap", alignContent:"stretch", gap:12}},
+    { name: "Várias linhas (wrap)",
+      values: {direction: "row", justify:"center", align:"stretch", wrap:"wrap", alignContent:"space-around", gap:12}},
+  ];
+
+  // Render presets
+  PRESETS.forEach(p => {
+    const b = document.createElement("button");
+    b.className = "chip";
+    b.textContent = p.name;
+    b.addEventListener("click", () => {
+      Object.assign(state, p.values);
+      syncControls();
+      renderAll();
+    });
+    el.presets.appendChild(b);
+  });
+
+  // Eventos de controles
+  Object.entries(el.controls).forEach(([key, control]) => {
+    control.addEventListener("change", () => {
+      state[key] = control.value;
+      renderAll();
+    });
+  });
+  el.gap.addEventListener("input", () => {
+    state.gap = Number(el.gap.value);
+    el.gapVal.textContent = state.gap + "px";
+    renderAll();
+  });
+
+  el.buttons.addItem.addEventListener("click", () => {
+    const nextId = items.length ? Math.max(...items.map(i=>i.id))+1 : 1;
+    items.push({id: nextId, label: "Item "+nextId, order:0, grow:0, shrink:1, basis:"auto", alignSelf:"auto"});
+    renderAll();
+  });
+  el.buttons.resetItems.addEventListener("click", () => {
+    items = Array.from({length:5}, (_,i)=> ({
+      id: i+1, label: "Item "+(i+1), order: 0, grow: 0, shrink: 1, basis: "auto", alignSelf: "auto"
+    }));
+    renderAll();
+  });
+
+  function syncControls(){
+    el.controls.direction.value = state.direction;
+    el.controls.justify.value = state.justify;
+    el.controls.align.value = state.align;
+    el.controls.wrap.value = state.wrap;
+    el.controls.alignContent.value = state.alignContent;
+    el.gap.value = state.gap;
+    el.gapVal.textContent = state.gap + "px";
+  }
+
+  function cssLine(prop, value){
+    return `${prop}: ${typeof value === "number" ? value + "px" : value};`;
+  }
+
+  function renderContainer(){
+    const c = el.container.style;
+    c.flexDirection = state.direction;
+    c.justifyContent = state.justify;
+    c.alignItems = state.align;
+    c.flexWrap = state.wrap;
+    c.alignContent = state.alignContent;
+    c.gap = state.gap + "px";
+
+    // CSS gerado
+    el.cssOut.textContent = [
+      "/* Contêiner */",
+      ".container {",
+      "  display: flex;",
+      `  ${cssLine("flex-direction", state.direction)}`,
+      `  ${cssLine("justify-content", state.justify)}`,
+      `  ${cssLine("align-items", state.align)}`,
+      `  ${cssLine("flex-wrap", state.wrap)}`,
+      `  ${cssLine("align-content", state.alignContent)}`,
+      `  ${cssLine("gap", state.gap)}`,
+      "}",
+      "",
+      "/* Itens (exemplo) */",
+      ".item {",
+      "  flex: grow shrink basis; /* atalho de grow/shrink/basis */",
+      "}"
+    ].join("\n");
+  }
+
+  function renderItems(){
+    // Monta itens na área visual
+    el.container.innerHTML = "";
+    items.forEach(it => {
+      const d = document.createElement("div");
+      d.className = "item";
+      d.textContent = it.label;
+      d.style.order = it.order;
+      d.style.flexGrow = it.grow;
+      d.style.flexShrink = it.shrink;
+      d.style.flexBasis = it.basis;
+      d.style.alignSelf = it.alignSelf === "auto" ? "" : it.alignSelf;
+      d.title = `flex: ${it.grow} ${it.shrink} ${it.basis}; order: ${it.order}; align-self: ${it.alignSelf}`;
+      el.container.appendChild(d);
+    });
+
+    // Painéis de controle por item
+    el.itemsPanel.innerHTML = "";
+    items.forEach(it => {
+      const box = document.createElement("div");
+      box.className = "card";
+      box.innerHTML = `
+        <div class="row" style="justify-content:space-between">
+          <strong>${it.label}</strong>
+          <button class="btn btn-danger" data-remove="${it.id}">remover</button>
+        </div>
+        <div class="row">
+          <label style="min-width:90px">order</label>
+          <input type="number" value="${it.order}" step="1" min="-10" max="10" data-field="order" data-id="${it.id}" />
+        </div>
+        <div class="row">
+          <label style="min-width:90px">flex-grow</label>
+          <input type="number" value="${it.grow}" step="1" min="0" max="10" data-field="grow" data-id="${it.id}" />
+        </div>
+        <div class="row">
+          <label style="min-width:90px">flex-shrink</label>
+          <input type="number" value="${it.shrink}" step="1" min="0" max="10" data-field="shrink" data-id="${it.id}" />
+        </div>
+        <div class="row">
+          <label style="min-width:90px">flex-basis</label>
+          <input type="text" value="${it.basis}" placeholder="auto | 120px | 30%" data-field="basis" data-id="${it.id}" />
+        </div>
+        <div class="row">
+          <label style="min-width:90px">align-self</label>
+          <select data-field="alignSelf" data-id="${it.id}">
+            ${["auto","stretch","flex-start","center","flex-end","baseline"].map(v=>`<option ${v===it.alignSelf?"selected":""}>${v}</option>`).join("")}
+          </select>
+        </div>
+      `;
+      el.itemsPanel.appendChild(box);
+    });
+
+    // Bind inputs
+    el.itemsPanel.querySelectorAll("input,select,button").forEach(ctrl => {
+      const id = Number(ctrl.getAttribute("data-id"));
+      const field = ctrl.getAttribute("data-field");
+      if(ctrl.getAttribute("data-remove")){
+        ctrl.addEventListener("click", () => {
+          if(items.length <= 1) return;
+          items = items.filter(i => i.id !== id);
+          renderAll();
+        });
+      }else if(field){
+        ctrl.addEventListener("input", () => {
+          const it = items.find(i => i.id === id);
+          if(!it) return;
+          if(field === "basis"){ it[field] = ctrl.value; }
+          else if(field === "alignSelf"){ it[field] = ctrl.value; }
+          else{ it[field] = Number(ctrl.value); }
+          renderAll();
+        });
+      }
+    });
+
+    el.itemsCount.textContent = items.length + " itens";
+  }
+
+  function renderAll(){
+    renderContainer();
+    renderItems();
+  }
+
+  // Inicializa
+  syncControls();
+  renderAll();
+</script>
+</body>
+</html>

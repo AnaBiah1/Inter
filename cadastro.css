@@ -1,0 +1,92 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Arial', sans-serif;
+}
+
+body {
+  background-color: #f3efff;
+  display: flex;
+  justify-content: center;
+  padding: 40px 20px;
+  
+}
+
+.form-container {
+  background-color: white;
+  border-radius: 8px;
+  max-width: 600px;
+  width: 100%;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  padding: 30px;
+}
+
+.form-header h1 {
+  color: #2c2c2c;
+  margin-bottom: 10px;
+  font-size: 24px;
+  text-align: center;
+}
+
+.form-header a:hover {
+  text-decoration: underline;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+label {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: bold;
+  color: #333;
+}
+
+input[type="text"],
+input[type="email"],
+select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #dadce0;
+  border-radius: 4px;
+  transition: border 0.3s;
+}
+
+input:focus,
+select:focus {
+  border-color: #6200ee;
+  outline: none;
+}
+
+button {
+  background-color: #ff3535;
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+button:hover {
+  background-color: #fa1616;
+}
+
+/* Estilo para campo obrigatório com erro */
+.required input:invalid,
+.required select:invalid {
+  border: 1px solid red;
+}
+
+.required span {
+  color: red;
+}
+
+.error {
+  color: red;
+  font-size: 12px;
+  margin-top: 4px;
+  display: none;
+}

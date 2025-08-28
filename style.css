@@ -1,0 +1,409 @@
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: url('Bolas.jpg') no-repeat center center fixed;
+      background-size: cover;
+      background-position: top center;
+      color: white;
+      background-repeat: no-repeat;
+      height: 80vh;
+    }
+
+    .menu {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      font-size: 30px;
+      cursor: pointer;
+    }
+
+    .center-text {
+      height: 30vh;
+      text-align: center;
+      margin-top: 120px;
+    }
+
+    .center-text h1 {
+      font-size: 48px;
+      font-weight: bold;
+    }
+
+    .center-text h2 {
+      font-size: 36px;
+      margin: 10px 0;
+      color: #ff0000;
+    }
+
+    .date {
+      margin-top: 10px;
+      font-size: 20px;
+      color: #ccc;
+    }
+
+    .card {
+      width: 750px;
+      margin: 50px auto;
+      background-color: rgba(36, 35, 35, 0.836);
+      border-radius: 30px;
+      padding: 80px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .card-text {
+      width: 50%;
+    }
+
+    .card-text h3 {
+      font-size: 24px;
+      font-weight: bold;
+    }
+
+    .card-text p {
+      font-size: 14px;
+      color: #ccc;
+    }
+
+    .card-image img {
+        width: 300px;
+        height: 280px;
+        border-radius: 20px;
+        cursor: pointer;
+    }
+
+    .card-image img:hover {
+        transform: scale(1.05) rotate(-1deg);
+        opacity: 0.9;
+    }
+
+    .campo {
+      background-image: url('futebol.jpg');
+      height: 80vh;
+      background-position: center;
+      background-size: cover;
+      background-repeat: no-repeat;
+      padding: 100px 20px;
+      display: flex;
+      text-align: center;
+}
+
+.texto-central h1 {
+  font-size: 32px;
+  font-weight: bold;
+  line-height: 1.4;
+  text-align: center;
+  display: grid;
+  margin-top: 250px;
+}
+
+.texto-central hr {
+  width: 500px;
+  height: 2px;
+  background-color: white;
+  border: none;
+  margin: 0 auto 20px auto;
+}
+
+.texto-central p {
+  font-size: 18px;
+  color: #ccc;
+}
+
+.modalidades {
+  background-color: #1a1a1a;
+  color: white;
+  padding: 100px 30px;
+  text-align: center;
+  height: 100vh;
+}
+
+.modalidades h2 {
+  margin-top: 40px;
+  font-size: 36px;
+  margin-bottom: 10px;
+}
+
+.modalidades p {
+  font-size: 18px;
+  color: #ccc;
+  margin-bottom: 50px;
+}
+
+.cards-modalidades {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 40px;
+}
+
+.modalidade {
+  margin-top: 80px;
+  background-color: #2e2e2e;
+  padding: 36px;
+  border-radius: 12px;
+  width: 250px;
+  text-align: center;
+  transition: transform 0.3s ease;
+  cursor: pointer;
+}
+
+.modalidade:hover {
+  transform: scale(1.05);
+}
+
+.modalidade img {
+  width: 250px;
+  height: 300px;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+
+.modalidade span {
+  font-size: 18px;
+  font-weight: bold;
+  color: #fff;
+}
+
+.secao-inscricao {
+  background-image: url('volei.jpg'); 
+  background-size: cover;
+  background-position: center;  
+  padding: 100px 20px;
+  color: white;
+  text-align: center;
+  height: 80vh;
+  margin-top: 80px;
+}
+
+.secao-inscricao .form-container {
+  background-color: rgba(114, 114, 114, 0.5);
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 40px;
+  border-radius: 10px;
+}
+
+.secao-inscricao h2 {
+  margin-bottom: 30px;
+  font-size: 28px;
+}
+
+.secao-inscricao form {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.secao-inscricao input,
+.secao-inscricao select {
+  padding: 12px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.secao-inscricao button {
+  padding: 12px;
+  font-size: 16px;
+  background-color: #ff0000;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.secao-inscricao button:hover {
+  background-color: #cc0000;
+}
+
+.vantagens-section {
+  background-color: #bebebe;
+  padding: 40px 20px;
+  height: 93vh;
+}
+
+.vantagens-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 72px;
+  flex-wrap: wrap;
+  text-align: center;
+}
+
+.vantagens-logo {
+  height: 60px;
+  margin-top: 72px;
+}
+
+.vantagens-titulo {
+  color: #d32f2f;
+  font-size: 1.8em;
+  font-weight: bold;
+  margin-top: 100px;
+  text-align: center;
+}
+
+.vantagens-box {
+  background-color: white;
+  text-align: center;
+  border-radius: 25px;
+  padding: 60px;
+  max-width: 800px;
+  margin: auto;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.vantagens-box h3 {
+  color: #333;
+  font-size: 1.5em;
+  margin-bottom: 20px;
+}
+
+.vantagens-box ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  line-height: 1.6;
+  color: #333;
+}
+
+.vantagens-box li {
+  margin-bottom: 10px;
+}
+
+.menu-icon {
+  font-size: 28px;
+  cursor: pointer;
+  color: white;
+  padding: 15px;
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  z-index: 1100;
+  background: transparent;
+}
+
+.side-menu {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: rgba(10, 20, 40, 0.95);
+  overflow-x: hidden;
+  transition: 0.4s;
+  padding-top: 60px;
+  display: flex;
+  flex-direction: column;
+  z-index: 1000;
+}
+
+.side-menu a {
+  padding: 12px 25px;
+  text-decoration: none;
+  font-size: 18px;
+  color: white;
+  display: block;
+  font-weight: bold;
+  transition: background 0.3s;
+}
+
+.side-menu a:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+section {
+  padding-top: 60px;
+}
+
+.footer {
+    background-color: #000;
+    color: white;
+    font-family: Arial, sans-serif;
+    padding: 40px 50px;
+}
+
+.footer-top {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    align-items: flex-start;
+}
+
+.footer-left,
+.footer-center,
+.footer-right {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.footer-line {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+}
+
+.footer-line span {
+    line-height: 1.4;
+}
+
+.icon {
+    width: 22px;
+    height: 22px;
+    margin-right: 8px;
+}
+
+.footer-bottom {
+    text-align: center;
+    font-size: 13px;
+    border-top: 1px solid #444;
+    padding-top: 10px;
+    margin-top: 15px;
+}
+
+.botao {
+  display: inline-block;
+  padding: 8px 16px;
+  background: #00d1d1;
+  color: black;
+  text-decoration: none;
+  border-radius: 5px;
+  font-weight: bold;
+}
+
+.chamada {
+  background-image:
+  linear-gradient(rgba(0,0,0,0.637), rgba(0,0,0,0.842)),
+  url('futebol.avif');
+  background-size: cover; 
+  background-position: center; 
+  background-repeat: no-repeat; 
+  width: 100%;                  
+  min-height: 100vh;             
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  gap: 8px;
+}
+.chamada p { font-size: 2rem; font-weight: bold; }
+.chamada span { color: #aaa; font-weight: normal; }
+.botao {
+  display: inline-block;
+  padding: 8px 25px;
+  background: #f53030;
+  color: black;
+  text-decoration: none;
+  border-radius: 5px;
+  font-weight: bold;
+  margin-top: 30px;
+}
